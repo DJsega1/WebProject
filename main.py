@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template
+from database import db_session
 
 app = Flask(__name__)
 
@@ -12,4 +13,5 @@ def index():
 
 
 if __name__ == '__main__':
+    db_session.global_init("database/database.sqlite")
     app.run(port=8080, host='localhost')
