@@ -10,7 +10,7 @@ class User(SqlAlchemyBase):
     postal_code = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=False)
     address = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
 
 
@@ -43,9 +43,17 @@ class Item(SqlAlchemyBase):
     article = sqlalchemy.Column(sqlalchemy.Integer, index=True, unique=True, primary_key=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     description = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    amount = sqlalchemy.Column(sqlalchemy.Integer, nullable=False)
     material = sqlalchemy.Column(sqlalchemy.ForeignKey("materials.id"), nullable=False)
     color = sqlalchemy.Column(sqlalchemy.ForeignKey("colors.id"), nullable=False)
     type = sqlalchemy.Column(sqlalchemy.ForeignKey("types.id"), nullable=False)
     sex = sqlalchemy.Column(sqlalchemy.ForeignKey("sex.id"), nullable=False)
     is_hot = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False)
     is_new = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False)
+
+
+class Admin(SqlAlchemyBase):
+    __tablename__ = 'admins'
+    id = sqlalchemy.Column(sqlalchemy.Integer, index=True, unique=True, primary_key=True, autoincrement=True)
+    username = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)
+    password = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)
