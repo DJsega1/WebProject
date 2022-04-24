@@ -10,15 +10,39 @@
     <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}"/>
     <title>Пример формы</title>
 </head>
-<body style="margin: 20% 20%;">
+<body style="margin: 5% 20%;">
 <div>
     <form class="login_form" method="post">
-        <h1>Добавить пользователя</h1>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-               placeholder="Введите адрес почты" name="email">
-        <input type="name" class="form-control" id="name" placeholder="Введите ФИО" name="name">
-        <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
-        <button type="submit" class="btn btn-primary">Записаться</button>
+        <h1>Добавить вещь</h1>
+        <input class="form-control" placeholder="Введите артикул" name="article" type="number">
+        <input class="form-control" placeholder="Введите название" name="name" type="text">
+        <input class="form-control" placeholder="Введите описание" name="description" type="text">
+        <input class="form-control" placeholder="Введите количество на складе" name="amount" type="number">
+        <select class="form-select" name="material" required>
+            <option disabled selected>Выберите материал</option>
+            {% for material in material_list %}
+            <option>{{ material }}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select" name="color" required>
+            <option disabled selected>Выберите цвет</option>
+            {% for color in color_list %}
+            <option>{{ color }}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select" name="type" required>
+            <option disabled selected>Выберите тип одежды</option>
+            {% for type in type_list %}
+            <option>{{ type }}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select" name="sex" required>
+            <option disabled selected>Выберите пол</option>
+            {% for sex in sex_list %}
+            <option>{{ sex }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 </div>
 </body>

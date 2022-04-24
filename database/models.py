@@ -48,8 +48,6 @@ class Item(SqlAlchemyBase):
     color = sqlalchemy.Column(sqlalchemy.ForeignKey("colors.id"), nullable=False)
     type = sqlalchemy.Column(sqlalchemy.ForeignKey("types.id"), nullable=False)
     sex = sqlalchemy.Column(sqlalchemy.ForeignKey("sex.id"), nullable=False)
-    is_hot = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False)
-    is_new = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False)
 
 
 class Admin(SqlAlchemyBase):

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
 from database.db_session import create_session
-from database.models import Admin
+from database.models import *
 import logging
 
 logger = logging.getLogger(__name__)
@@ -33,6 +33,26 @@ def admin_login():
 
 @admin_panel_blueprint.route('/admin-panel', methods=["GET", "POST"])
 def admin_login():
-    if request.method == "POST":
-        session = create_session()
-    return render_template('admin_panel.html')
+    session = create_session()
+    if request.method == 'POST':
+        item = Item()
+        item.article = request.form['article']
+        item.name = request.form['name']
+        item.description = request.form['description']
+        item.amount = request.form['amount']
+        item.color = request.form['color']
+        item.type = request.form['type']
+        item.material = request.form['material']
+        item.sex = request.form['sex']
+        session.add(item)
+        session.commit()
+        session.close()
+        return redirect('/admin-panel')
+    kwargs = {
+        "material_list": [i.name for i in session.query(Material).all()],
+        "color_list": [i.name for i in session.query(Color).all()],
+        "type_list": [i.name for i in session.query(Type).all()],
+        "sex_list": [i.name for i in session.query(Sex).all()]
+    }
+    session.close()
+    return render_template('admin_panel.html', **kwargs)
