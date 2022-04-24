@@ -22,10 +22,10 @@ admin_panel_blueprint = Blueprint(
 def admin_login():
     if request.method == "POST":
         session = create_session()
-        data = session.query(Admin).filter(Admin.username == request.form['username']).one()
+        data = session.query(Admin).filter(Admin.username == request.form['username']).all()
         try:
-            assert data.password == request.form['password']
-        except AssertionError:
+            assert data[0].password == request.form['password']
+        except Exception:
             return redirect('/admin-login')
         return redirect('/admin-panel')
     return render_template('admin_login.html')
