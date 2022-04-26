@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, request, redirect
 from database.db_session import create_session
 from database.models import *
@@ -44,6 +45,12 @@ def admin_login():
         item.type = request.form['type']
         item.material = request.form['material']
         item.sex = request.form['sex']
+        item.sold = 0
+        path = f'static/img/{item.article}'
+        if not os.path.isdir(path):
+            os.mkdir(path)
+        for image in request.files.getlist('images'):
+            image.save(os.path.join(path, image.filename))
         session.add(item)
         session.commit()
         session.close()

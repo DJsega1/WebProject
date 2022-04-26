@@ -48,6 +48,7 @@ class Item(SqlAlchemyBase):
     color = sqlalchemy.Column(sqlalchemy.ForeignKey("colors.id"), nullable=False)
     type = sqlalchemy.Column(sqlalchemy.ForeignKey("types.id"), nullable=False)
     sex = sqlalchemy.Column(sqlalchemy.ForeignKey("sex.id"), nullable=False)
+    sold = sqlalchemy.Column(sqlalchemy.Integer, nullable=False)
 
 
 class Admin(SqlAlchemyBase):

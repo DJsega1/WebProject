@@ -12,7 +12,7 @@
 </head>
 <body style="margin: 5% 20%;">
 <div>
-    <form class="login_form" method="post">
+    <form class="login_form" enctype="multipart/form-data" method="post">
         <h1>Добавить вещь</h1>
         <input class="form-control" placeholder="Введите артикул" name="article" type="number">
         <input class="form-control" placeholder="Введите название" name="name" type="text">
@@ -42,6 +42,7 @@
             <option>{{ sex }}</option>
             {% endfor %}
         </select>
+        <input type="file" name="images" multiple accept="image/png,image/jpeg"><br>
         <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 </div>
