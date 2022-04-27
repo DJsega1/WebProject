@@ -1,14 +1,11 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 
-{% block header %}
-<header>
-    <nav>
-        <img class="menu" src="../static/img/logo.png">
-        <div class="container1">
-            <h1 class="category">Мужская одежда</h1>
-            <h1 class="category">Женская одежда</h1>
-        </div>
-        <img class="lk" src="../static/img/user.png">
-    </nav>
-</header>
+{% block content %}
+<div class="container2">
+    <img class="logo" src="../static/img/logo.png">
+    <span>Мы выбираем лучшие материалы для пошива.<br>Наши цены ниже, чем у конкурентов.</span>
+</div>
+<div class="block">
+    <div><span class="title">Популярное</span></div>
+</div>
 {% endblock %}

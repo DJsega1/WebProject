@@ -10,4 +10,5 @@ if __name__ == '__main__':
     app.register_blueprint(admin.admin_login_blueprint)
     app.register_blueprint(admin.admin_panel_blueprint)
     app.register_blueprint(index.index_blueprint)
+    app.register_blueprint(men.men_blueprint)
     app.run(port=8080, host='localhost')
